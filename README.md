@@ -14,7 +14,7 @@
 - Schema-free, nimble, simple to use, real time DBMS
 - Allows querying multiple databases which is as simple and fast as querying on single database.
 - It is built on top of one of the fastest and real-time data indexing engine - PowerIndeX.
-- 
+
 ## Scope of Functionalities
 - Create and add data.
 - Read and display one data record.
