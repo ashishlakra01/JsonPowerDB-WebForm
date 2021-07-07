@@ -17,6 +17,7 @@
 
 ## Screenshots
 ![WebFrom](https://github.com/ashishlakra01/JsonPowerDB-WebForm/blob/master/website.png)
+<br>
 *Fig 1: Website to handle CRUD operations.*
 
 ![Database](https://github.com/ashishlakra01/JsonPowerDB-WebForm/blob/master/database.png)
