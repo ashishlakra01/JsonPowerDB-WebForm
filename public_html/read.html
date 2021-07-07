@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- 
+    Document   : read.html
+    Author     : Ashish Lakra
+-->
+
+<html lang="en">
+    <head>
+        <title>L2E Project</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src=" http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js "></script>
+
+    </head>
+    <body>
+
+    <center><h2>Show data</h2></center>
+
+    <div class="container">
+
+        <form id="form" method="post">
+
+            <div class="form-group">
+                <label for="empId">Employee ID:</label> <label id="empIdMsg"></label>
+                <input type="text" class="form-control" name="empId" id="empId" placeholder="Enter Employee ID" required>
+            </div>
+
+            <center><input type="button" class="btn btn-primary" value="Get Data" onclick="readData();"></center>
+        </form>
+
+        <p id="showdata"></p>
+    </div>
+
+    <script>
+
+        $("#empId").focus();
+
+        // function to validate inputted data
+        function createJsonstrObject() {
+
+            var empIdVar = $("#empId").val();
+            var jsonStrObj = {
+                empId: empIdVar,
+            };
+            return JSON.stringify(jsonStrObj);
+        }
+
+        function showData(resultObj) {
+            
+            resultObj.data = JSON.parse(resultObj.data);
+            
+            var container = document.getElementById("showdata");
+            container.innerHTML = 
+                    "Employee ID : " + resultObj.data.empId 
+                    + "<br>Name : " + resultObj.data.empName 
+                    + "<br>Designation :" + resultObj.data.empDesignation 
+                    + "<br>Email : " + resultObj.data.empEmail;
+        }
+
+        // function to reset the form
+        function resetForm() {
+            $("#empId").val("");
+            $("#empId").focus();
+        }
+
+        function readData() {
+
+            // create jsonstr object
+            var jsonStr = createJsonstrObject();
+            if (jsonStr === "") {
+                return;
+            }
+
+            // create JPDB GET request
+            var getReqStr = createGETRequest("90935916|-31948847738179070|90945012", "EMPLOYEES", "EMP-REL", jsonStr);
+            alert(getReqStr);
+
+            jQuery.ajaxSetup({async: false});
+
+            // execute the GET request
+            var resultObj = executeCommandAtGivenBaseUrl(getReqStr, "http://api.login2explore.com:5577", "/api/irl");
+            //alert("GET SUCCESSFUL!\n" + JSON.stringify(resultObj));
+
+            jQuery.ajaxSetup({async: true});
+
+            //show data
+            showData(resultObj);
+
+            // reset to empty data fields
+            resetForm();
+        }
+
+    </script>
+
+</body>
+
+</html>

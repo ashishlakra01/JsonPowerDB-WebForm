@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- 
+    Document   : delete.html
+    Author     : Ashish Lakra
+-->
+
+<html lang="en">
+    <head>
+        <title>L2E Project</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src=" http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js "></script>
+
+    </head>
+    <body>
+
+    <center><h2>Update Designation</h2></center>
+
+    <div class="container">
+
+        <form id="form" method="post">
+
+            <div class="form-group">
+                <label for="empId">Employee ID:</label>
+                <input type="text" class="form-control" name="empId" id="empId" placeholder="Enter Employee ID" required>
+            </div>
+
+            <div class="form-group">
+                <label for="empDesig">Designation:</label>
+                <input type="text" class="form-control" id="empDesig" placeholder="Enter Employee Designation" name="empDesig">
+            </div>
+
+            <center><input type="button" class="btn btn-primary" value="Update" onclick="readData();"></center>
+        </form>
+
+    </div>
+
+    <script>
+
+        $("#empId").focus();
+
+        // function to validate inputted data
+        function createJsonstrObject() {
+
+            var empDesigVar = $("#empDesig").val();
+            var jsonStrObj = {
+                empDesignation : empDesigVar,
+            };
+            return JSON.stringify(jsonStrObj);
+        }
+
+        // function to reset the form
+        function resetForm() {
+            $("#empId").val("");
+            $("#empDesig").val("");
+            $("#empId").focus();
+        }
+
+        function readData() {
+
+            // create jsonstr object
+            var jsonStr = createJsonstrObject();
+            if (jsonStr === "") {
+                return;
+            }
+
+            var empIdVar = parseInt($("#empId").val());
+
+            // create JPDB UPDATE request for insertion
+            var updateReqStr = createUPDATERecordRequest("90935916|-31948847738179070|90945012", jsonStr ,"EMPLOYEES", "EMP-REL", empIdVar);
+            alert(updateReqStr);
+
+            jQuery.ajaxSetup({async: false});
+
+            // execute the UPDATE request
+            var resultObj = executeCommandAtGivenBaseUrl(updateReqStr, "http://api.login2explore.com:5577", "/api/iml");
+            alert("UPDATE SUCCESSFUL!\n" + JSON.stringify(resultObj));
+            
+            
+            jQuery.ajaxSetup({async: true});
+
+            // reset to empty data fields
+            resetForm();
+        }
+
+    </script>
+
+</body>
+
+</html>
