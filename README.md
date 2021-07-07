@@ -5,15 +5,16 @@
 ## JsonPowerDB
  - JsonPowerDB or JPDB is an easy-to-use database server with REST API services. It's a High Performance, Light Weight, Ajax Enabled, Serverless, Simple to Use, Real-time, Multi-mode DBMS. It can be used for RDBMS, Document DB, Key-Value DB, GeoSpatial/ Time-series analytics, real-time Data Analytics or any software application that needs backend support. 
  
- 
- 
- ## Benefits of using JsonPowerDB
- - High Performance CRUD operations.
- - Minimum learning curves, builds faster, cuts time to market, reduces the development cost
- - Maximizes data processing performance.
- - Schema-free, nimble, simple to use, real time DBMS
- - Allows querying multiple databases which is as simple and fast as querying on single database.
- - It is built on top of one of the fastest and real-time data indexing engine - PowerIndeX.
+![GitHub Logo](/images/logo.png)
+![GitHub Logo](/images/logo.png)
+
+## Benefits of using JsonPowerDB
+- High Performance CRUD operations.
+- Minimum learning curves, builds faster, cuts time to market, reduces the development cost
+- Maximizes data processing performance.
+- Schema-free, nimble, simple to use, real time DBMS
+- Allows querying multiple databases which is as simple and fast as querying on single database.
+- It is built on top of one of the fastest and real-time data indexing engine - PowerIndeX.
 
 ## Release History
 
